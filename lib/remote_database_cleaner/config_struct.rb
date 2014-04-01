@@ -1,6 +1,6 @@
 require 'ostruct'
 
-module RemoteFactoryGirl
+module RemoteDatabaseCleaner
   class ConfigStruct < OpenStruct
     def self.block_to_hash(block = nil)
       config = self.new
