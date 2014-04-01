@@ -8,7 +8,7 @@ and while individual apps can be tested (and presumably passing) in isolation (u
 by mocking http requests), it does not guarantee the apps will work in unison. One
 issue with integration testing SOA apps is that data, when created with 
 tools such as [RemoteFactoryGirl](https://github.com/tdouce/remote_factory_girl),
-persists across tests/specs. RemoteDatabaseCleaner, leverages [DatabaseCleaner](https://github.com/bmabey/database_cleaner), provides a mechanism to clean the database remotely from the client. 
+persists across tests/specs. RemoteDatabaseCleaner, leveraging [DatabaseCleaner](https://github.com/bmabey/database_cleaner), provides a mechanism to clean the database remotely from the client. 
 
 ## Installation
 
