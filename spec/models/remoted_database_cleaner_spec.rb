@@ -30,7 +30,7 @@ describe RemoteDatabaseCleaner do
   describe '.clean' do
     it 'should send http request and parse request' do
       config = double('config', :home_url => 'http://somewhere', :to_hash => {})
-      http   = double('RemoteDatabaseCleanerFriends::Http', :post => {})
+      http   = double('RemoteDatabaseCleaner::Http', :post => {})
       RemoteDatabaseCleaner.config = config
       expect(http).to receive(:post).with(config, { :database => :clean })
       RemoteDatabaseCleaner.clean(http)
