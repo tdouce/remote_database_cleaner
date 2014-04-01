@@ -7,7 +7,7 @@ module RemoteDatabaseCleaner
 
     DEFAULT_HOME_CONFIG = { :host      => nil, 
                             :port      => nil, 
-                            :end_point => 'remote_database_cleaners' }
+                            :end_point => '/remote_database_cleaners' }
 
     attribute :home, Hash, :default => DEFAULT_HOME_CONFIG
 
@@ -24,9 +24,9 @@ module RemoteDatabaseCleaner
       raise_no_host_error
       http = 'http://'
       if home[:port]
-        "#{ http }#{ home.fetch(:host) }:#{ home.fetch(:port) }/#{ home.fetch(:end_point) }"
+        "#{ http }#{ home.fetch(:host) }:#{ home.fetch(:port) }#{ home.fetch(:end_point) }"
       else
-        "#{ http }#{ home.fetch(:host) }/#{ home.fetch(:end_point) }"
+        "#{ http }#{ home.fetch(:host) }#{ home.fetch(:end_point) }"
       end
     end
 

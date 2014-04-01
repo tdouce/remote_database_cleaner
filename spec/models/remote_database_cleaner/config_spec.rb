@@ -13,7 +13,7 @@ describe RemoteDatabaseCleaner::Config do
         default_config = RemoteDatabaseCleaner::Config.new
         expect(default_config.home).to eq({ :host      => nil, 
                                             :port      => nil, 
-                                            :end_point => 'remote_database_cleaners'})
+                                            :end_point => '/remote_database_cleaners'})
       end
     end
 
