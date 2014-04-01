@@ -6,7 +6,12 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'remote_database_cleaner'
+
+```ruby
+group :test do
+  gem 'remote_factory_girl'
+end
+```
 
 And then execute:
 
@@ -18,7 +23,22 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Configure in `spec/spec_helper.rb`
+
+```ruby
+RemoteDatabaseCleaner.configure do |config|
+  config.home = { host: 'localhost', port: 5000, end_point: "/over_the_rainbow" }
+end
+
+RSpec.configure do |config|
+  config.after(:each) do
+    RemoteDatabaseCleaner.clean
+  end
+end
+```
+
+## Run Tests 
+    $ rspec
 
 ## Contributing
 
