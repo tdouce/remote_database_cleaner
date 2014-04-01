@@ -16,7 +16,7 @@ module RemoteDatabaseCleaner
   end
 
   def self.clean(http = Http)
-    database_cleaner  = RemoteDatabaseCleaner.new
+    database_cleaner = RemoteDatabaseCleaner.new
     http.post(config, database_cleaner.params)
   end
 
