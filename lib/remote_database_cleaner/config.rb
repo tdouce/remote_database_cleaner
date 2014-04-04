@@ -7,7 +7,7 @@ module RemoteDatabaseCleaner
 
     DEFAULT_HOME_CONFIG = { :host      => nil, 
                             :port      => nil, 
-                            :end_point => '/remote_database_cleaners' }
+                            :end_point => '/remote_database_cleaner/home/clean' }
 
     attribute :home, Hash, :default => DEFAULT_HOME_CONFIG
 
