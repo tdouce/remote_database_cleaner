@@ -20,7 +20,7 @@ Add this line to your application's Gemfile:
 
 ```ruby
 group :test do
-  gem 'remote_factory_girl'
+  gem 'remote_database_cleaner'
 end
 ```
 
