@@ -1,6 +1,6 @@
 # RemoteDatabaseCleaner
 
-[database_cleaner](https://github.com/bmabey/database_cleaner) for Software Oriented Architecture (SOA). Clean
+[database_cleaner](https://github.com/bmabey/database_cleaner) for [Software Oriented Architecture](http://en.wikipedia.org/wiki/Service-oriented_architecture) (SOA). Clean
 database remotely when used in conjunction with [remote_database_cleaner_home_rails](https://github.com/tdouce/remote_database_cleaner_home_rails).
 
 ## Getting Started
