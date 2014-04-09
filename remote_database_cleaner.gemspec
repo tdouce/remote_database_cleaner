@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["travisdouce@gmail.com"]
   spec.summary       = %q{Initiate cleaning of test database in server from client }
   spec.description   = %q{Faciliates SOA (software oriented architecture) integration testing.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/tdouce/remote_database_cleaner"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
