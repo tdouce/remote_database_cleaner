@@ -8,7 +8,7 @@ describe RemoteDatabaseCleaner do
     it 'should be configured with correct defaults' do
       expect(RemoteDatabaseCleaner.config.home).to eq({:host      => nil, 
                                                        :port      => nil, 
-                                                       :end_point => '/remote_database_cleaners'})
+                                                       :end_point => '/remote_database_cleaner/home/clean'})
     end
 
     it 'should be able to configure with a block' do
