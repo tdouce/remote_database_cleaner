@@ -6,8 +6,8 @@ describe RemoteDatabaseCleaner do
 
   describe 'configuration' do
     it 'should be configured with correct defaults' do
-      expect(RemoteDatabaseCleaner.config.home).to eq({:host      => nil, 
-                                                       :port      => nil, 
+      expect(RemoteDatabaseCleaner.config.home).to eq({:host      => nil,
+                                                       :port      => nil,
                                                        :end_point => '/remote_database_cleaner/home/clean'})
 
       expect(RemoteDatabaseCleaner.config.https).to eq(false)
@@ -22,8 +22,8 @@ describe RemoteDatabaseCleaner do
 
     it 'should be able to configure .home' do
       RemoteDatabaseCleaner.config.home[:host] = 'fun_guy'
-      RemoteDatabaseCleaner.config.home[:port] = 3333 
-      RemoteDatabaseCleaner.config.home[:end_point] = '/down_home' 
+      RemoteDatabaseCleaner.config.home[:port] = 3333
+      RemoteDatabaseCleaner.config.home[:end_point] = '/down_home'
       expect(RemoteDatabaseCleaner.config.home[:host]).to eq('fun_guy')
       expect(RemoteDatabaseCleaner.config.home[:port]).to eq(3333)
       expect(RemoteDatabaseCleaner.config.home[:end_point]).to eq('/down_home')
@@ -76,7 +76,7 @@ describe RemoteDatabaseCleaner do
       RemoteDatabaseCleaner.config.home[:host] = 'localhost'
       config = RemoteDatabaseCleaner.config
       params = { :database => :clean }
-      expect(RemoteDatabaseCleaner::Http).to receive(:post).with(config, params) 
+      expect(RemoteDatabaseCleaner::Http).to receive(:post).with(config, params)
       RemoteDatabaseCleaner.clean
     end
   end

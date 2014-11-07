@@ -10,13 +10,13 @@ describe RemoteDatabaseCleaner::Http do
 
     it 'should raise no host config errors' do
       rest_client.stub(:post).with(config.home_url, params, content_type: :json, accept: :json).and_return(true)
-      expect(config).to receive(:raise_if_host_not_set) 
+      expect(config).to receive(:raise_if_host_not_set)
       RemoteDatabaseCleaner::Http.post(config, params, rest_client)
     end
 
     it 'should send http request to home_url with params' do
       config.stub(:raise_if_host_not_set)
-      expect(rest_client).to receive(:post).with(config.home_url, params, content_type: :json, accept: :json) 
+      expect(rest_client).to receive(:post).with(config.home_url, params, content_type: :json, accept: :json)
       RemoteDatabaseCleaner::Http.post(config, params, rest_client)
     end
   end

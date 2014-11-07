@@ -25,7 +25,7 @@ describe RemoteDatabaseCleaner::Config do
 
       it 'should return a url without a port if port is not configured' do
         default_config.home[:host] = 'localhost_no_port'
-        default_config.home[:port] = nil 
+        default_config.home[:port] = nil
         expect(default_config.home_url).to eq('http://localhost_no_port/remote_database_cleaner/home/clean')
       end
 
