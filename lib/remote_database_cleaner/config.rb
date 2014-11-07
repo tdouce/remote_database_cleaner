@@ -20,8 +20,8 @@ module RemoteDatabaseCleaner
     end
 
     def to_hash
-      { home:                      home,
-        home_url:                  home_url }
+      { home:     home,
+        home_url: home_url }
     end
 
     def raise_no_host_error
