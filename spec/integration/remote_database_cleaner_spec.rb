@@ -9,6 +9,8 @@ describe RemoteDatabaseCleaner do
       expect(RemoteDatabaseCleaner.config.home).to eq({:host      => nil, 
                                                        :port      => nil, 
                                                        :end_point => '/remote_database_cleaner/home/clean'})
+
+      expect(RemoteDatabaseCleaner.config.https).to eq(false)
     end
 
     it 'should be able to configure with a block' do
@@ -25,6 +27,34 @@ describe RemoteDatabaseCleaner do
       expect(RemoteDatabaseCleaner.config.home[:host]).to eq('fun_guy')
       expect(RemoteDatabaseCleaner.config.home[:port]).to eq(3333)
       expect(RemoteDatabaseCleaner.config.home[:end_point]).to eq('/down_home')
+    end
+
+    describe '#home_url' do
+      context 'when configured to with http' do
+        before do
+          RemoteDatabaseCleaner.config.home[:host] = 'localhost'
+        end
+
+        it 'should use http' do
+          expect(
+            RemoteDatabaseCleaner.config.home_url
+          ).to eq('http://localhost/remote_database_cleaner/home/clean')
+        end
+      end
+
+      context 'when configured to with https' do
+        before do
+          RemoteDatabaseCleaner.config.https = true
+        end
+
+        it 'should use https' do
+          RemoteDatabaseCleaner.config.home[:host] = 'localhost'
+
+          expect(
+            RemoteDatabaseCleaner.config.home_url
+          ).to eq('https://localhost/remote_database_cleaner/home/clean')
+        end
+      end
     end
   end
 

@@ -9,10 +9,10 @@ describe RemoteDatabaseCleaner::Config do
 
     describe 'default configuration' do
       it 'should be configured with correct defaults' do
-        default_config = RemoteDatabaseCleaner::Config.new
-        expect(default_config.home).to eq({ :host      => nil, 
-                                            :port      => nil, 
+        expect(default_config.home).to eq({ :host      => nil,
+                                            :port      => nil,
                                             :end_point => '/remote_database_cleaner/home/clean'})
+        expect(default_config.https).to eq(false)
       end
     end
 
@@ -27,6 +27,18 @@ describe RemoteDatabaseCleaner::Config do
         default_config.home[:host] = 'localhost_no_port'
         default_config.home[:port] = nil 
         expect(default_config.home_url).to eq('http://localhost_no_port/remote_database_cleaner/home/clean')
+      end
+
+      context 'configure https' do
+        before do
+          default_config.home[:host] = 'localhost'
+          default_config.home[:port] = 5555
+          default_config.https = true
+        end
+
+        it 'should be able configure Hyper Text Transfer Protocal Secure' do
+          expect(default_config.https).to eq(true)
+        end
       end
     end
 
