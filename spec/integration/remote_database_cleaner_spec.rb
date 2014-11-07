@@ -98,9 +98,12 @@ describe RemoteDatabaseCleaner do
 
   describe '.clean' do
     context 'when remote is not configured by name' do
-      it 'should send a post request to home' do
+      before do
         RemoteDatabaseCleaner::Http.stub(:post).and_return(true)
         RemoteDatabaseCleaner.config.home[:host] = 'localhost'
+      end
+
+      it 'should send a post request to home' do
         config = RemoteDatabaseCleaner.config
         params = { :database => :clean }
         expect(RemoteDatabaseCleaner::Http).to receive(:post).with(config, params)
