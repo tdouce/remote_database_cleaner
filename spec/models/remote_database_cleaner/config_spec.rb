@@ -1,4 +1,3 @@
-require 'virtus'
 require 'remote_database_cleaner/config'
 require 'remote_database_cleaner/exceptions'
 
@@ -14,15 +13,6 @@ describe RemoteDatabaseCleaner::Config do
         expect(default_config.home).to eq({ :host      => nil, 
                                             :port      => nil, 
                                             :end_point => '/remote_database_cleaner/home/clean'})
-      end
-    end
-
-    describe '.configure' do
-      it 'should be able to set configurations' do
-        config  = RemoteDatabaseCleaner::Config.configure({ :home => { :host => 'tifton', :port => 9999, :end_point => '/somewhere' }})
-        expect(config.home).to eq({ :host      => 'tifton', 
-                                    :port      => 9999, 
-                                    :end_point => '/somewhere'})
       end
     end
 

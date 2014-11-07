@@ -1,23 +1,12 @@
 require 'remote_database_cleaner/exceptions'
-require 'virtus'
 
 module RemoteDatabaseCleaner
   class Config
-    include Virtus.model
 
-    DEFAULT_HOME_CONFIG = { :host      => nil, 
-                            :port      => nil, 
-                            :end_point => '/remote_database_cleaner/home/clean' }
+    attr_accessor :home
 
-    attribute :home, Hash, :default => DEFAULT_HOME_CONFIG
-
-    def self.configure(configs)
-      new(configs)
-    end
-
-    def initialize(attrs = {})
-      attrs[:home] = update_home_config(attrs)
-      super(attrs)
+    def initialize
+      @home = default_home_config
     end
 
     def home_url
@@ -31,8 +20,8 @@ module RemoteDatabaseCleaner
     end
 
     def to_hash
-      raise_no_host_error
-      super.merge(home_url: home_url)
+      { home:                      home,
+        home_url:                  home_url }
     end
 
     def raise_no_host_error
@@ -45,8 +34,10 @@ module RemoteDatabaseCleaner
 
     private
 
-    def update_home_config(attrs)
-      attrs[:home] = DEFAULT_HOME_CONFIG.merge(attrs.fetch(:home, {}))
+    def default_home_config
+      { :host      => nil,
+        :port      => nil,
+        :end_point => '/remote_database_cleaner/home/clean' }
     end
   end
 end

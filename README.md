@@ -22,6 +22,3 @@ See [GETTING STARTED](https://github.com/tdouce/remote_database_cleaner/wiki/Get
 
 1. Allow remote_database_cleaner to configure multiple "homes" (external services) so that
    remote_database_cleaner can clean test data in multiple "homes"s.
-2. Refactor configuration implementation (see [remote_factory_girl](https://github.com/tdouce/remote_factory_girl) for [example config implementation](https://github.com/tdouce/remote_factory_girl/blob/master/lib/remote_factory_girl.rb#L28)):
-    1. remove `remote_database_cleaner/config_struct`
-    2. remove `virtus` gem.
