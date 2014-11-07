@@ -30,6 +30,19 @@ describe RemoteDatabaseCleaner::Config do
       end
     end
 
+    describe '#to_hash' do
+      before do
+        default_config.home[:host] = 'localhost'
+      end
+
+      it 'should return a hash representation' do
+        expect(default_config.to_hash).to eq( {:home => {:host      => 'localhost',
+                                                         :port      => nil,
+                                                         :end_point => '/remote_database_cleaner/home/clean'},
+                                               :home_url => 'http://localhost/remote_database_cleaner/home/clean' })
+      end
+    end
+
     describe 'errors' do
       it 'should raise RemoteDatabaseConfigError if .config.home[:host] is nil' do
         default_config.home[:host] = nil
