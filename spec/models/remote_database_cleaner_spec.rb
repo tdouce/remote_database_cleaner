@@ -18,15 +18,6 @@ describe RemoteDatabaseCleaner do
     end
   end
 
-  describe '.reset' do
-    it 'should be able to reset the configuration' do
-      config = double('config')
-      RemoteDatabaseCleaner.config = config
-      RemoteDatabaseCleaner.reset(double('config'))
-      expect(RemoteDatabaseCleaner.config).to_not equal(config)
-    end
-  end
-
   describe '.clean' do
     it 'should send http request and parse request' do
       config = double('config', :home_url => 'http://somewhere', :to_hash => {})
