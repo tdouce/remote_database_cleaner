@@ -4,7 +4,7 @@ require 'remote_database_cleaner/http'
 
 module RemoteDatabaseCleaner
   class RemoteDatabaseCleaner
-    def params 
+    def params
       { :database => :clean }
     end
   end
