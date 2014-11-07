@@ -9,8 +9,8 @@ describe RemoteDatabaseCleaner::Config do
 
     describe 'default configuration' do
       it 'should be configured with correct defaults' do
-        expect(default_config.home).to eq({ :host      => nil, 
-                                            :port      => nil, 
+        expect(default_config.home).to eq({ :host      => nil,
+                                            :port      => nil,
                                             :end_point => '/remote_database_cleaner/home/clean'})
         expect(default_config.https).to eq(false)
       end
