@@ -12,11 +12,10 @@ module RemoteDatabaseCleaner
 
     def home_url
       raise_no_host_error
-      http = 'http://'
       if home[:port]
-        "#{ http }#{ home.fetch(:host) }:#{ home.fetch(:port) }#{ home.fetch(:end_point) }"
+        "#{ hyper_text_transfer_protocal }://#{ home.fetch(:host) }:#{ home.fetch(:port) }#{ home.fetch(:end_point) }"
       else
-        "#{ http }#{ home.fetch(:host) }#{ home.fetch(:end_point) }"
+        "#{ hyper_text_transfer_protocal }://#{ home.fetch(:host) }#{ home.fetch(:end_point) }"
       end
     end
 
@@ -34,6 +33,10 @@ module RemoteDatabaseCleaner
     end
 
     private
+
+    def hyper_text_transfer_protocal
+      https == true ? 'https' : 'http'
+    end
 
     def default_home_config
       { :host      => nil,
