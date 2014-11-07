@@ -18,7 +18,13 @@ module RemoteDatabaseCleaner
 
   def self.clean(http = Http)
     database_cleaner = RemoteDatabaseCleaner.new
-    http.post(config, database_cleaner.params)
+    config_for_remote = config(remotes_config.current_remote)
+    http.post(config_for_remote, database_cleaner.params)
+  end
+
+  def self.with_remote(remote_name = remotes_config.default_remote_name)
+    remotes_config.current_remote = remote_name
+    self
   end
 
   def self.remotes_config

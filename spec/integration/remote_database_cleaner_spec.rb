@@ -119,5 +119,42 @@ describe RemoteDatabaseCleaner do
         RemoteDatabaseCleaner.clean(http)
       end
     end
+
+    context 'when remote is configured by name' do
+      before do
+        configure_remote_database_cleaner(remote_name: :travis,
+                                          host: 'localhost',
+                                          port: 3000,
+                                          end_point: '/remote_database_cleaner/travis/home/clean')
+        configure_remote_database_cleaner(remote_name: :casey,
+                                          host: 'over_the_rainbow',
+                                          port: 6000,
+                                          end_point: '/remote_database_cleaner/casey/home/clean')
+      end
+
+      context 'remote "travis"' do
+        it 'should send HTTP requests to remote named travis' do
+          http = double('http')
+
+          expect(http).to receive(:post) do |config, _, _|
+            expect(config.home_url).to eq('http://localhost:3000/remote_database_cleaner/travis/home/clean')
+          end
+
+          RemoteDatabaseCleaner.with_remote(:travis).clean(http)
+        end
+      end
+
+      context 'remote "travis"' do
+        it 'should send HTTP requests to remote named travis' do
+          http = double('http')
+
+          expect(http).to receive(:post) do |config, _, _|
+            expect(config.home_url).to eq('http://over_the_rainbow:6000/remote_database_cleaner/casey/home/clean')
+          end
+
+          RemoteDatabaseCleaner.with_remote(:casey).clean(http)
+        end
+      end
+    end
   end
 end
