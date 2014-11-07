@@ -100,7 +100,7 @@ describe RemoteDatabaseCleaner do
     context 'when remote is not configured by name' do
       before do
         RemoteDatabaseCleaner::Http.stub(:post).and_return(true)
-        RemoteDatabaseCleaner.config.home[:host] = 'localhost'
+        configure_remote_database_cleaner(host: 'localhost')
       end
 
       it 'should be configured to send http requests to default home' do
