@@ -103,7 +103,7 @@ describe RemoteDatabaseCleaner do
         RemoteDatabaseCleaner.config.home[:host] = 'localhost'
       end
 
-      it 'should send a post request to home' do
+      it 'should be configured to send http requests to default home' do
         config = RemoteDatabaseCleaner.config
         params = { :database => :clean }
         expect(RemoteDatabaseCleaner::Http).to receive(:post).with(config, params)
