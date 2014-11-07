@@ -99,7 +99,6 @@ describe RemoteDatabaseCleaner do
   describe '.clean' do
     context 'when remote is not configured by name' do
       before do
-        RemoteDatabaseCleaner::Http.stub(:post).and_return(true)
         configure_remote_database_cleaner(host: 'localhost')
       end
 
