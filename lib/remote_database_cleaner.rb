@@ -1,7 +1,6 @@
 require "remote_database_cleaner/version"
 require 'remote_database_cleaner/config'
 require 'remote_database_cleaner/http'
-require 'remote_database_cleaner/config_struct'
 
 module RemoteDatabaseCleaner
   class RemoteDatabaseCleaner
@@ -10,9 +9,10 @@ module RemoteDatabaseCleaner
     end
   end
 
-  def self.configure(opts = { :config_struct => ConfigStruct, :config => Config }, &block)
-    config      = opts.fetch(:config_struct).block_to_hash(block)
-    self.config = opts.fetch(:config).configure(config)
+  def self.configure(opts = {:config => Config }, &block)
+    configuration = opts.fetch(:config).new
+    yield(configuration)
+    self.config = configuration
   end
 
   def self.clean(http = Http)
