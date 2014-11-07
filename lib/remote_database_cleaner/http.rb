@@ -7,7 +7,7 @@ module RemoteDatabaseCleaner
     end
 
     def post(config, params, rest_client)
-      config.raise_no_host_error
+      config.raise_if_host_not_set
       rest_client.post config.home_url, params, content_type: :json, accept: :json
     end
   end

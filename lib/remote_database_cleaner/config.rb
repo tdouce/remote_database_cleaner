@@ -11,7 +11,7 @@ module RemoteDatabaseCleaner
     end
 
     def home_url
-      raise_no_host_error
+      raise_if_host_not_set
       if home[:port]
         "#{ hyper_text_transfer_protocal }://#{ home.fetch(:host) }:#{ home.fetch(:port) }#{ home.fetch(:end_point) }"
       else
@@ -24,7 +24,7 @@ module RemoteDatabaseCleaner
         home_url: home_url }
     end
 
-    def raise_no_host_error
+    def raise_if_host_not_set
       raise RemoteDatabaseCleanerConfigError.new("RemoteDatabaseCleaner.config.home[:host] can not be nil") unless has_home?
     end
 
