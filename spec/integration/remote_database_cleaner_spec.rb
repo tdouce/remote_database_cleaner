@@ -1,8 +1,9 @@
 require 'remote_database_cleaner'
+require 'spec_helper'
 
 describe RemoteDatabaseCleaner do
 
-  before { RemoteDatabaseCleaner.reset }
+  before { RemoteDatabaseCleaner.remotes_config.reset }
 
   describe 'configuration' do
     it 'should be configured with correct defaults' do
@@ -54,6 +55,31 @@ describe RemoteDatabaseCleaner do
             RemoteDatabaseCleaner.config.home_url
           ).to eq('https://localhost/remote_database_cleaner/home/clean')
         end
+      end
+    end
+
+    context 'when configuring multiple remotes' do
+      before do
+        configure_remote_database_cleaner(remote_name: :travis,
+                                          host: 'localhost',
+                                          port: 3000,
+                                          end_point: '/remote_factory_girl/travis/home')
+        configure_remote_database_cleaner(remote_name: :casey,
+                                          host: 'over_the_rainbow',
+                                          port: 6000,
+                                          end_point: '/remote_factory_girl/casey/home')
+      end
+
+      it 'should return configuration for remote "travis"' do
+        expect(RemoteDatabaseCleaner.config(:travis).home).to eq({:host      => 'localhost',
+                                                                  :port      => 3000,
+                                                                  :end_point => '/remote_factory_girl/travis/home'})
+      end
+
+      it 'should return configuration for remote "casey"' do
+        expect(RemoteDatabaseCleaner.config(:casey).home).to eq({:host      => 'over_the_rainbow',
+                                                                 :port      => 6000,
+                                                                 :end_point => '/remote_factory_girl/casey/home'})
       end
     end
   end
