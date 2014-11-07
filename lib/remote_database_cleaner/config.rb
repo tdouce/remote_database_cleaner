@@ -3,10 +3,11 @@ require 'remote_database_cleaner/exceptions'
 module RemoteDatabaseCleaner
   class Config
 
-    attr_accessor :home
+    attr_accessor :home, :https
 
     def initialize
       @home = default_home_config
+      @https = false
     end
 
     def home_url
