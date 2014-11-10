@@ -1,4 +1,4 @@
-## 1.0.2 - Nov. 10, 2014
+## 1.0.0 - Nov. 10, 2014
 
 1. Configure multiple "home"/"remote" applications
 2. Remove RemoteDatabaseCleaner.reset. Instead use, RemoteDatabaseCleaner.remotes_config.reset
