@@ -55,6 +55,71 @@ describe RemoteDatabaseCleaner::Config do
       end
     end
 
+    describe '#has_home?' do
+      context "when 'host' and 'end_point' are set" do
+        before do
+          default_config.home[:host] = 'localhost'
+          default_config.home[:end_point] = 'somewhere/over/the/rainbow'
+        end
+
+        it 'should return true' do
+          expect(default_config.has_home?).to eq(true)
+        end
+      end
+
+      context "when 'host' is not set" do
+        before do
+          default_config.home[:end_point] = 'somewhere/over/the/rainbow'
+        end
+
+        context "when 'host' is an empty string" do
+          before do
+            default_config.home[:host] = ''
+          end
+
+          it 'should return false' do
+            expect(default_config.has_home?).to eq(false)
+          end
+        end
+
+        context "when 'host' is nil" do
+          before do
+            default_config.home[:host] = nil
+          end
+
+          it 'should return false' do
+            expect(default_config.has_home?).to eq(false)
+          end
+        end
+      end
+
+      context "when 'end_point' is not set" do
+        before do
+          default_config.home[:host] = 'localhost'
+        end
+
+        context "when 'end_point' is an empty string" do
+          before do
+            default_config.home[:end_point] = ''
+          end
+
+          it 'should return false' do
+            expect(default_config.has_home?).to eq(false)
+          end
+        end
+
+        context "when 'end_point' is nil" do
+          before do
+            default_config.home[:end_point] = nil
+          end
+
+          it 'should return false' do
+            expect(default_config.has_home?).to eq(false)
+          end
+        end
+      end
+    end
+
     describe 'errors' do
       it 'should raise RemoteDatabaseConfigError if .config.home[:host] is nil' do
         default_config.home[:host] = nil
