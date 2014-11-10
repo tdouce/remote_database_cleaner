@@ -1,6 +1,7 @@
 require "remote_database_cleaner/version"
 require 'remote_database_cleaner/config'
 require 'remote_database_cleaner/http'
+require 'remote_database_cleaner/remotes_config'
 
 module RemoteDatabaseCleaner
   class RemoteDatabaseCleaner
@@ -9,26 +10,28 @@ module RemoteDatabaseCleaner
     end
   end
 
-  def self.configure(opts = {:config => Config }, &block)
+  def self.configure(remote_name = remotes_config.default_remote_name, opts = {:config => Config }, &block)
     configuration = opts.fetch(:config).new
     yield(configuration)
-    self.config = configuration
+    remotes_config.remotes[remote_name] = configuration
   end
 
   def self.clean(http = Http)
     database_cleaner = RemoteDatabaseCleaner.new
-    http.post(config, database_cleaner.params)
+    config_for_remote = config(remotes_config.current_remote)
+    http.post(config_for_remote, database_cleaner.params)
   end
 
-  def self.config
-    @config
+  def self.with_remote(remote_name = remotes_config.default_remote_name)
+    remotes_config.current_remote = remote_name
+    self
   end
 
-  def self.config=(config)
-    @config = config
+  def self.remotes_config
+    @remotes_config ||= RemotesConfig.new
   end
 
-  def self.reset(config = Config.new)
-    self.config = config
+  def self.config(remote_name = remotes_config.default_remote_name)
+    remotes_config.remotes[remote_name]
   end
 end

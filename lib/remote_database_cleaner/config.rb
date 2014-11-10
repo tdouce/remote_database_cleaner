@@ -3,6 +3,8 @@ require 'remote_database_cleaner/exceptions'
 module RemoteDatabaseCleaner
   class Config
 
+    DEFAULT_END_POINT = '/remote_database_cleaner/home/clean'.freeze
+
     attr_accessor :home, :https
 
     def initialize
@@ -41,7 +43,7 @@ module RemoteDatabaseCleaner
     def default_home_config
       { :host      => nil,
         :port      => nil,
-        :end_point => '/remote_database_cleaner/home/clean' }
+        :end_point => DEFAULT_END_POINT }
     end
   end
 end
