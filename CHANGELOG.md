@@ -6,3 +6,7 @@
 4. Refactors how remote_database_cleaner implements configuration
 5. Removes trailing whitespaces
 6. Adds tests for RemoteDatabaseCleaner::Config#has_home?
+
+
+## 1.0.1 - Nov. 10, 2014
+1. Removes gem 'virtus' from gemspec
