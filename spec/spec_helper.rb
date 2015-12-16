@@ -4,7 +4,9 @@ require 'bundler/setup'
 require 'remote_database_cleaner'
 
 RSpec.configure do |config|
-
+  config.mock_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
 end
 
 def configure_remote_database_cleaner(remote_name: nil,
