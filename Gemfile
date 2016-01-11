@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rest-client' # http
+gem 'rest-client'
 
 # Specify your gem's dependencies in remote_database_cleaner.gemspec
 gemspec

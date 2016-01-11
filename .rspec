@@ -1,2 +1,3 @@
 --color
---default_path spec
+--require spec_helper
+--order rand
